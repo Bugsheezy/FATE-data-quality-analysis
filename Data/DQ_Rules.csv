@@ -1,0 +1,8 @@
+﻿RuleID,Dimension,Rule,Failure indicator,Business impact
+DQ01,Completeness,Student contact information required,EmailPresent or PhonePresent = FALSE,Contact/remediation delays
+DQ02,Completeness,Online enrolments require valid LMS unit linkage,StudyMode = Online and LMSUnitLinkStatus = Missing,Learner cannot reliably access learning materials
+DQ03,Uniqueness,An enrolment should not be duplicated for the same learner/product/intake,Potential Duplicate Enrolment exception,Duplicate processing/reporting risk
+DQ04,Consistency,Withdrawal status must be reconciled before remediation workflow continues,Withdrawal / Remediation Overlap,Unnecessary remediation and rework
+DQ05,Consistency,Migrated records must reconcile to current-system business rules,Legacy Migration Mismatch,Reporting and processing inconsistencies
+DQ06,Validity,Fee/product configuration must pass validation,FeeProductStatus = Review,Incorrect fee/product treatment
+DQ07,Completeness,Pending enrolments must contain required completion information,Incomplete Enrolment exception,Delayed enrolment completion

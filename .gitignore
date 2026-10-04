@@ -1,0 +1,14 @@
+# Power BI / Office temporary files
+~$*
+*.tmp
+*.lock
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+
+# VS Code local settings
+.vscode/
