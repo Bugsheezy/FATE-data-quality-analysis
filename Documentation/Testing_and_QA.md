@@ -143,24 +143,67 @@ across all four exception categories.
 
 No source records were modified during this investigation.
 
-### 9. Outstanding Quality Checks
+### 9. SQL-to-Power BI Reconciliation (QA18)
+
+**Validation date:** 8 October 2026
+
+**Objective:** Verify that the Power BI dashboard metrics reconcile with the documented SQL baseline and that the underlying DAX measures use appropriate calculations.
+
+#### Dashboard Metric Reconciliation
+
+| Metric | SQL Baseline | Power BI Result | Status |
+|---|---:|---:|---|
+| Total Enrolments | 10,075 | 10,075 | PASS |
+| Affected Enrolments | 2,723 | 2,723 | PASS |
+| Affected Rate | 27.03% | 27.03% | PASS |
+| Total Exception Occurrences | 3,800 | 3,800 | PASS |
+| Open Exceptions | 1,305 | 1,305 | PASS |
+
+The underlying DAX measures were reviewed:
+
+- Total Enrolments: `COUNTROWS(Enrolments)`
+- Affected Enrolments: `DISTINCTCOUNT(Exceptions[EnrolmentID])`
+- Affected Rate: `DIVIDE([Affected Enrolments], [Total Enrolments])`
+- Total Exception Occurrences: `COUNTROWS(Exceptions)`
+- Open Exceptions: `CALCULATE([Total Exception Occurrences], Exceptions[RemediationStatus] = "Open")`
+
+#### Additional Integrity Checks
+
+A read-only DAX query was executed in Power BI Desktop.
+
+| Test | Expected | Actual | Result |
+|---|---:|---:|---|
+| Total enrolment rows | 10,075 | 10,075 | PASS |
+| Unique enrolment IDs | 10,075 | 10,075 | PASS |
+| Blank enrolment IDs | 0 | 0 | PASS |
+| Blank exception enrolment IDs | 0 | 0 | PASS |
+
+#### Result: PASS
+
+All five dashboard metrics matched the documented baseline.
+
+The enrolment table contained 10,075 unique, nonblank enrolment IDs, and no blank exception enrolment references were identified.
+
+The DAX measures were reviewed and found consistent with their intended calculation definitions.
+
+These results establish reconciliation for the metrics and integrity checks tested. They do not independently verify every visual, data transformation or refresh operation.
+
+### 10. Outstanding Quality Checks
 
 The following checks remain outstanding:
 
-- SQL metrics reconcile with Power BI measures.
 - Power BI refresh completes successfully.
 - The final reporting run has comparable coverage to earlier runs.
 
 These checks must not be marked as passed without supporting evidence.
 
-
-### 10. Limitations
+### 11. Limitations
 
 The dataset is synthetic and its results do not represent actual organisational performance.
 
 Identified associations do not independently prove root causes. Proposed controls and improvements require testing before effectiveness can be claimed.
 
-### 11. Conclusion
+### 12. Conclusion
 
 
 The initial database record-count validation passed, and the four documented SQL investigations executed successfully.
