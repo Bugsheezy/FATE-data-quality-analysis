@@ -82,6 +82,67 @@ All five tests returned zero failures.
 
 These results confirm that the tested records satisfy the specified rule-code, remediation-status and student-reference checks.
 
+
+### QA17 — Exception-to-Source Reconciliation
+
+**Validation date:** 8 October 2026
+
+**Objective:** Compare reported exception occurrences with the
+currently recorded enrolment attributes to identify cases
+requiring further investigation.
+
+| Exception | Total Occurrences | For Review | Affected Enrolments for Review | Open for Review |
+|---|---:|---:|---:|---:|
+| EX01 — Incomplete Contact Details | 762 | 46 | 46 | 14 |
+| EX02 — Missing LMS Unit Link | 619 | 193 | 134 | 72 |
+| EX05 — Legacy Migration Mismatch | 431 | 48 | 48 | 12 |
+| EX06 — Fee/Product Validation | 867 | 40 | 40 | 18 |
+| **Total** | **2,679** | **327** | **268 category-level counts** | **116** |
+
+**Result:** INVESTIGATION REQUIRED
+
+Of the 2,679 exception occurrences examined, 327 (12.2%)
+met at least one diagnostic condition requiring review.
+
+These are potential inconsistencies, not confirmed data errors.
+
+### Key observations
+
+- EX02 generated the largest number of flagged occurrences.
+- Some open exceptions are associated with enrolments
+  whose current attributes no longer indicate the issue.
+- The current dataset does not provide historical snapshots
+  of enrolment attributes for each reporting date.
+- The EX02 rule requires clarification regarding whether
+  On Campus enrolments may also require LMS access.
+
+### Limitations
+
+The comparison uses current enrolment attributes against
+historical exception occurrences.
+
+Without event-level attribute history, it is not possible
+to determine whether every flagged occurrence represents:
+
+- a valid historical exception;
+- an issue corrected after the reporting date;
+- an exception classification problem;
+- or an incomplete business-rule definition.
+
+The affected-enrolment counts are category-level counts.
+They must not be interpreted as 268 unique enrolments
+across all four exception categories.
+
+### Recommended actions
+
+1. Clarify the business requirements for each affected rule.
+2. Investigate open exceptions that conflict with current attributes.
+3. Introduce historical attribute tracking where justified.
+4. Reconcile exception status after source-record changes.
+5. Establish a process for reviewing potential false positives.
+
+No source records were modified during this investigation.
+
 ### Outstanding Quality Checks
 
 The following checks remain outstanding:
