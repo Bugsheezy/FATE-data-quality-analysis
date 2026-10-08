@@ -77,7 +77,6 @@ The following checks require further verification:
 
 These tests must not be marked as passed without supporting evidence.
 
-
 ### 7. Limitations
 
 The dataset is synthetic and its results do not represent actual organisational performance.
