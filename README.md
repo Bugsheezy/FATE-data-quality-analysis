@@ -12,17 +12,17 @@ The project demonstrates an end-to-end analytical workflow using **SQL Server / 
 
 FATE was experiencing recurring enrolment exceptions across its student administration processes.
 
-Operational teams were correcting individual records, but recurring defects continued to generate remediation workload. Management needed to understand:
+Operational teams were managing exception records, but some enrolments appeared in exception reporting more than once. Management needed to understand:
 
 - the scale of the data-quality problem;
 - which exception types generated the greatest workload;
 - whether certain systems, locations or delivery modes carried greater risk;
-- whether records were repeatedly returning in exception reports;
+- how often the same enrolments appeared in exception reporting, and whether follow-up investigation was warranted;
 - which patterns suggested systemic rather than isolated issues;
 - how remediation processes could be improved;
 - what preventative controls should be introduced.
 
-The project was designed to move beyond simply reporting exception counts and instead identify **systemic causes, operational impacts and sustainable controls**.
+The project was designed to move beyond exception counts to assess **potential systemic drivers, operational risks and preventative controls**. The underlying root causes and effectiveness of proposed controls remain hypotheses until tested.
 
 ---
 
@@ -32,7 +32,7 @@ The analysis addressed six core questions:
 
 1. What is the scale and composition of the enrolment data-quality problem?
 2. Which exception types, locations, systems and processes generate the greatest risk or workload?
-3. Are records repeatedly appearing after identification or remediation?
+3. Which enrolments have multiple exception occurrences, and does that justify further investigation of recurring issues?
 4. What patterns indicate systemic rather than isolated problems?
 5. What are the likely root causes and downstream operational consequences?
 6. What controls, monitoring and process improvements should FATE implement?
@@ -49,12 +49,12 @@ The analysis addressed six core questions:
 | Analysis | SQL, DAX, Power BI |
 | Data modelling | Relational modelling, one-to-many relationships |
 | Data Quality | Completeness, uniqueness, validity, consistency |
-| Investigation | Segmentation, recurrence analysis, exception-rate analysis |
-| Root Cause Analysis | System, process, location and workflow investigation |
+| Investigation | Segmentation, repeat-occurrence analysis, exception-rate analysis |
+| Root Cause Assessment | Evidence-based hypotheses about system, process, location and workflow risks |
 | Business Analysis | Business questions, process risks, controls and recommendations |
 | Governance | Data-quality rules, ownership, monitoring and escalation |
 | Visualisation | Power BI dashboards |
-| Version-ready documentation | GitHub-style project structure and case study |
+| Documentation and QA | GitHub repository, data dictionary, rule catalogue and recorded validation tests |
 
 ---
 
@@ -115,26 +115,25 @@ The data represents fictional enrolments across multiple campuses, regions, facu
 
 ## Analytical Architecture
 
-The project uses the following analytical flow:
+The project combines two related workflows: SQL investigation and validation, and Power BI reporting. Both inform the findings and recommendations.
 
 ```text
 Synthetic Source Data
         ↓
 SQL Server
-        ↓
-T-SQL Investigation
-        ↓
-Power Query Preparation
-        ↓
-Power BI Data Model
-        ↓
-DAX Measures
-        ↓
-Management Reporting
-        ↓
-Root Cause Analysis
-        ↓
-Process & Governance Recommendations
+        ├── T-SQL investigation and QA checks
+        │
+        └── Power Query preparation
+                     ↓
+              Power BI data model
+                     ↓
+                 DAX measures
+                     ↓
+              Management reporting
+                     ↓
+         Findings and root-cause hypotheses
+                     ↓
+            Proposed process controls
 ```
 
 The Power BI model uses:
@@ -177,48 +176,36 @@ ProductID     P108
 CampusID      C08
 ```
 
-This ensured the relationships between Students, Enrolments and Exceptions were reliable.
+The related identifiers were subsequently checked with SQL referential-integrity tests (QA09–QA11 and QA16).
 
 ---
 
 ## SQL Analysis
 
-T-SQL was used to investigate the exception population rather than simply extract data for visualisation.
+The published [T-SQL script](SQL/FATE_SQL_Analysis.sql) contains **four diagnostic investigations**, followed by database validation and integrity checks:
 
-The analysis included:
+1. Duplicate-affected enrolment rates by campus.
+2. Withdrawal/remediation overlap by enrolment status.
+3. Open workloads and average resolution time by exception type.
+4. Exception occurrences and open rates by reporting run.
 
-- dataset profiling;
-- distinct affected-record calculations;
-- exception composition;
-- unresolved workload;
-- source-system comparisons;
-- delivery-mode comparisons;
-- recurrence analysis;
-- migration investigation;
-- campus-level duplicate analysis;
-- withdrawal/remediation overlap;
-- remediation performance;
-- reporting-run trends.
+It demonstrates `INNER JOIN`, `LEFT JOIN`, CTEs, `COUNT(DISTINCT)`, `CASE`, conditional aggregation, denominator-aware rates and `DATEDIFF` calculations.
 
-Techniques demonstrated include:
+Broader analysis of affected enrolments, source systems, regions and occurrence frequency is presented through the [Power BI report](PowerBI/FATE_Data_Quality_Analysis.pbix) and the findings below. These should not be mistaken for additional published SQL query sections.
 
-- `INNER JOIN`
-- `LEFT JOIN`
-- `COUNT(DISTINCT)`
-- `CASE`
-- `GROUP BY`
-- Common Table Expressions (`CTEs`)
-- conditional aggregation
-- calculated rates
-- segmentation
-- denominator-aware comparisons
-- date-difference analysis
+### Validation and QA
 
-The complete analysis is available in:
+[Testing_and_QA.md](Documentation/Testing_and_QA.md) records the following work executed in SQL Server on **8 October 2026**:
 
-```text
-SQL/FATE_SQL_Analysis.sql
-```
+| Test references | Validation | Recorded result |
+|---|---|---|
+| QA01–QA04 | Student, enrolment, exception and rule-table counts | All four matched baseline |
+| QA05–QA08 | Execution of four diagnostic SQL investigations | All four returned results without reported SQL errors |
+| QA09–QA11 | Orphan exceptions, orphan enrolments and resolution-date ordering | Zero failed records for each check |
+| QA12 | Exception-code to rule-ID coverage | Zero failed records |
+| QA13–QA16 | Remediation status, resolution-date completeness and student-reference consistency | Zero failed records for each check |
+
+**Interpretation:** Passing record-count and integrity checks establishes only the conditions tested. Successful execution of QA05–QA08 confirms the queries ran, not that every analytical interpretation is independently validated. Full Power BI metric reconciliation, refresh logging and the final reporting run's coverage are separate verification considerations.
 
 ---
 
@@ -264,7 +251,7 @@ Volume alone, however, did not identify the most systemic problems.
 
 ---
 
-## 4. LMS and migration problems showed the strongest recurrence
+## 4. LMS and migration problems showed the highest occurrence frequency
 
 The highest occurrence-per-affected-enrolment ratios were:
 
@@ -278,13 +265,13 @@ The highest occurrence-per-affected-enrolment ratios were:
 | Incomplete Contact Details | 1.14 |
 | Incomplete Enrolment | 1.10 |
 
-This indicates that **Missing LMS Unit Link** and **Legacy Migration Mismatch** were more likely to recur after initial identification, suggesting systemic rather than isolated defects.
+The **Missing LMS Unit Link** and **Legacy Migration Mismatch** categories generated more recorded occurrences per affected enrolment than other types. This is a useful signal for further investigation, but it does **not**, on its own, establish that an issue returned after successful remediation or prove a systemic cause.
 
 ---
 
-## 5. Migrated records carried materially higher risk
+## 5. Migrated records had higher observed exception exposure
 
-Affected-enrolment rates differed significantly by source system:
+Affected-enrolment rates differed by source system in the synthetic dataset:
 
 | Source system | Affected rate |
 |---|---:|
@@ -306,7 +293,7 @@ Legacy migration mismatch rates among migrated records were:
 | Northern | 11.47% |
 | Central | 8.22% |
 
-The Western region's rate was more than twice that of Central, suggesting a concentrated migration-quality problem rather than an organisation-wide random distribution.
+The Western region's observed rate was more than twice Central's. This supports prioritising a regional investigation, without establishing the reason for the difference.
 
 ---
 
@@ -326,7 +313,7 @@ The sharp difference between the two leading campuses and the remainder suggests
 
 ---
 
-## 8. Withdrawal/remediation overlap exposed a process-control failure
+## 8. Withdrawal/remediation overlap indicated a process-control risk
 
 Withdrawal/remediation overlap was highly concentrated among withdrawn records:
 
@@ -337,9 +324,7 @@ Withdrawal/remediation overlap was highly concentrated among withdrawn records:
 | Active | 0.32% |
 | Pending | 0.12% |
 
-This strongly suggests remediation activity was continuing after records had already entered the withdrawal process.
-
-The issue therefore represents not only a data-quality defect, but also a **workflow and business-process control problem**.
+The overlap suggests a potential **workflow and business-process control risk**. However, the aggregate counts alone do not establish whether remediation happened before or after a withdrawal-status change; event-level lifecycle timestamps or process evidence would be needed to confirm that sequence.
 
 ---
 
@@ -369,7 +354,7 @@ The second report page focuses on diagnostic analysis:
 - migration mismatch by region;
 - duplicate-affected rate by campus;
 - withdrawal/remediation overlap;
-- recurring exception behaviour.
+- exception occurrences per affected enrolment.
 
 ![Investigation and Root Cause](Images/02_Investigation_Root_Cause.png)
 
@@ -377,7 +362,7 @@ The second report page focuses on diagnostic analysis:
 
 # Root Cause Assessment
 
-The analysis identified several different classes of underlying issue.
+The findings support several **root-cause hypotheses** requiring process or system-level validation. Associations and rates alone do not prove specific technical or operational causes.
 
 ### Migration quality
 
@@ -385,7 +370,7 @@ Higher exception rates among migrated records, particularly in the Western regio
 
 ### LMS linkage
 
-High recurrence of missing LMS unit links suggests record-level remediation is correcting symptoms without consistently addressing the upstream process or integration responsible for the linkage.
+The relatively high occurrence-per-affected-enrolment ratio for Missing LMS Unit Link justifies investigating whether upstream integration or validation controls contribute to repeated exceptions. It does not show that previous remediation failed.
 
 ### Duplicate creation
 
@@ -393,11 +378,13 @@ Concentration at Harbour City and Metro South suggests localised workflow, user-
 
 ### Withdrawal workflow
 
-The strong relationship between withdrawn enrolments and remediation overlap indicates that remediation workflows do not sufficiently account for changes in enrolment lifecycle status.
+The association between withdrawn status and EX04 exceptions warrants testing whether remediation workflows sufficiently account for enrolment lifecycle changes. The event sequence is not proven by these summary results.
 
 ---
 
-# Recommended Controls
+# Proposed Controls
+
+These are recommendations derived from the synthetic analysis. They have **not** been implemented or shown to improve real operational outcomes.
 
 ## 1. Migration validation
 
@@ -415,9 +402,7 @@ Records already progressing through withdrawal should be paused, filtered or rou
 
 ## 4. Recurrence monitoring
 
-Introduce recurrence thresholds for repeated LMS and migration exceptions.
-
-Repeated failures should trigger escalation from individual-record remediation to root-cause investigation.
+Define thresholds for multiple occurrences against the same enrolment and exception type. Confirm whether incidents remain unresolved, have been re-opened or represent genuinely new events before escalating from record-level remediation to process-level investigation.
 
 ## 5. Data ownership
 
@@ -472,7 +457,7 @@ Control
 Monitoring
 ```
 
-This approach shifts data-quality management from reactive record correction toward sustainable prevention and governance.
+This framework proposes a transition from reactive correction toward prevention and governance. Effectiveness would need to be demonstrated through implementation and follow-up monitoring.
 
 ---
 
@@ -483,7 +468,7 @@ This approach shifts data-quality management from reactive record correction tow
 - segmentation;
 - KPI design;
 - comparative rates;
-- recurrence analysis;
+- analysis of multiple occurrences per affected enrolment;
 - trend analysis;
 - interpretation of operational data.
 
@@ -516,7 +501,7 @@ This approach shifts data-quality management from reactive record correction tow
 ### Data Quality
 - quality dimensions;
 - exception management;
-- recurring defect analysis;
+- repeat-occurrence analysis;
 - remediation monitoring;
 - rule-based controls.
 
@@ -529,9 +514,9 @@ This approach shifts data-quality management from reactive record correction tow
 
 ### Governance & Process Improvement
 - data ownership;
-- preventative controls;
+- proposed preventative controls;
 - monitoring thresholds;
-- remediation workflow improvement;
+- remediation workflow redesign recommendations;
 - escalation design.
 
 ---
@@ -566,26 +551,20 @@ FATE/
 
 # Project Status
 
-**Core analytical release complete**
+**Core analytical release and supporting documentation published.**
 
-Completed:
+Completed and included in this repository:
 
-- synthetic dataset;
-- SQL Server implementation;
-- T-SQL investigation;
-- Power Query preparation;
-- relational data model;
-- DAX measures;
-- Power BI reporting;
-- root-cause analysis;
-- control recommendations.
+- synthetic dataset and SQL Server implementation;
+- four T-SQL diagnostic investigations and recorded QA01–QA16 validation work;
+- Power Query preparation, relational data model and DAX measures;
+- two Power BI report pages and exported screenshots;
+- findings, root-cause hypotheses and proposed controls;
+- [data dictionary](Documentation/Data_Dictionary.md) and [data-quality rule catalogue](Documentation/Data_Quality_Rules.md);
+- [current-state and future-state process improvement analysis](Documentation/Process_Improvement.md);
+- [testing and QA documentation](Documentation/Testing_and_QA.md).
 
-Planned supporting evidence:
-
-- detailed data dictionary;
-- documented data-quality rules;
-- current-state and future-state process analysis;
-- testing and QA evidence.
+**Remaining verification limitations:** Independent reconciliation of all Power BI measures against SQL, evidence of the latest Power BI refresh status, and an explanation for the smaller final reporting run have not been fully documented. The final reporting run (11 May 2026: 218 occurrences) is materially smaller than earlier runs; it must not be interpreted as confirmed improvement without assessing reporting coverage.
 
 Potential later extension:
 
@@ -599,7 +578,7 @@ Potential later extension:
 
 AI-assisted tools were used during development to support ideation, troubleshooting, documentation and iterative problem solving.
 
-Analytical decisions, query execution, validation, interpretation, Power BI modelling and final recommendations were reviewed and controlled by the project author.
+The project author reviewed query execution, reported results, model behaviour, interpretation and recommendations. AI-assisted output was not treated as evidence without checking it against the project data and implemented work.
 
 This reflects a **human-in-the-loop approach to AI-assisted analytical development**.
 
