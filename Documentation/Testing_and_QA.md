@@ -65,7 +65,6 @@ All three checks returned zero failures in SQL Server.
 
 These results confirm referential integrity for the relationships tested and valid resolution-date ordering for non-null dates.
 
-
 ### 6. Outstanding Quality Checks
 
 The following checks require further verification:
@@ -77,6 +76,7 @@ The following checks require further verification:
 - The final reporting run has comparable coverage to earlier runs.
 
 These tests must not be marked as passed without supporting evidence.
+
 
 ### 7. Limitations
 
