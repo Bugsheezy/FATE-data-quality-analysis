@@ -1,117 +1,160 @@
+
 # FATE | Enrolment Data Quality & Operational Improvement
 
-A portfolio case study investigating recurring enrolment data-quality exceptions within **FATE — Fictional Academy of Training and Education**, a synthetic statewide vocational education provider.
+A professional data analysis and business improvement portfolio project developed around **FATE — Fictional Academy of Training and Education**, a synthetic statewide vocational education provider.
 
-The project demonstrates an end-to-end analytical workflow using **SQL Server / T-SQL, Power Query, Power BI, DAX, data-quality analysis, root-cause analysis, process improvement and data governance**.
+The project investigates enrolment data-quality exceptions, evaluates operational risks, identifies patterns requiring further investigation and develops evidence-based recommendations for improving data quality and administrative processes.
 
-> **Important:** FATE is fictional and all data used in this project is synthetic. No real student, employer or organisational data is included.
+It demonstrates an integrated analytical workflow using:
 
----
+- Microsoft SQL Server and T-SQL
+- Power Query
+- Power BI and DAX
+- Data analysis and visualisation
+- Data quality and governance
+- Root-cause assessment
+- Business analysis
+- Process improvement
+- Testing and quality assurance
 
-## Project Overview
-
-FATE was experiencing recurring enrolment exceptions across its student administration processes.
-
-Operational teams were managing exception records, but some enrolments appeared in exception reporting more than once. Management needed to understand:
-
-- the scale of the data-quality problem;
-- which exception types generated the greatest workload;
-- whether certain systems, locations or delivery modes carried greater risk;
-- how often the same enrolments appeared in exception reporting, and whether follow-up investigation was warranted;
-- which patterns suggested systemic rather than isolated issues;
-- how remediation processes could be improved;
-- what preventative controls should be introduced.
-
-The project was designed to move beyond exception counts to assess **potential systemic drivers, operational risks and preventative controls**. The underlying root causes and effectiveness of proposed controls remain hypotheses until tested.
+> **Data disclosure:** FATE is a fictional organisation. All students, enrolments, campuses, systems and exception records are synthetic. No real organisational or student information is used.
 
 ---
 
-## Business Questions
+## 1. Project Overview
 
-The analysis addressed six core questions:
+FATE operates as a fictional vocational education provider with multiple campuses, regions, faculties and student administration processes.
 
-1. What is the scale and composition of the enrolment data-quality problem?
-2. Which exception types, locations, systems and processes generate the greatest risk or workload?
-3. Which enrolments have multiple exception occurrences, and does that justify further investigation of recurring issues?
-4. What patterns indicate systemic rather than isolated problems?
-5. What are the likely root causes and downstream operational consequences?
-6. What controls, monitoring and process improvements should FATE implement?
+Within this simulated environment, enrolment data-quality exceptions create potential administrative workload, reporting uncertainty and downstream operational risks.
+
+Exception records may involve incomplete information, duplicate enrolments, missing learning-management-system links, migration-related inconsistencies, fee/product validation problems or conflicts with enrolment withdrawal processes.
+
+Although operational teams can remediate individual records, correcting exceptions one at a time does not necessarily address the conditions that produce them.
+
+This project examines the available evidence to identify where further investigation, improved controls and process changes may be justified.
+
+### Business Objectives
+
+The analysis aims to:
+
+1. Establish the scale of enrolment data-quality issues.
+2. Identify exception categories generating substantial workload.
+3. Compare exception exposure across campuses, regions and source systems.
+4. Investigate multiple exception occurrences affecting the same enrolments.
+5. Identify patterns that may indicate broader process or system weaknesses.
+6. Assess remediation workload and operational risks.
+7. Develop practical recommendations for preventative controls.
+8. Validate analytical outputs and document unresolved data-quality risks.
+
+The objective is not simply to identify incorrect records, but to demonstrate how data can support better operational decisions.
 
 ---
 
-## Tools & Capabilities
+## 2. Business Questions
 
-| Area | Tools / Techniques |
+The investigation addresses six central questions.
+
+**1. How significant is the data-quality problem?**
+
+Determine the number of enrolments affected, total exception occurrences and proportion of unresolved issues.
+
+**2. Where are exceptions concentrated?**
+
+Compare exception categories, campuses, regions, source systems and enrolment characteristics.
+
+**3. Are some enrolments affected by multiple exception occurrences?**
+
+Examine occurrence frequency and identify potential repeat-processing or monitoring risks.
+
+**4. Which patterns warrant deeper investigation?**
+
+Distinguish isolated record problems from patterns that may indicate process or system-level weaknesses.
+
+**5. What are the potential operational consequences?**
+
+Consider remediation workload, delays, reporting reliability and unnecessary administrative effort.
+
+**6. What improvements should be considered?**
+
+Develop evidence-based recommendations for validation, monitoring, governance and administrative processes.
+
+---
+
+## 3. Tools and Capabilities
+
+| Area | Tools and Techniques |
 |---|---|
-| Database | SQL Server 2025 |
-| Querying | T-SQL |
+| Database | Microsoft SQL Server |
+| Data querying | T-SQL |
 | Data preparation | Power Query |
-| Analysis | SQL, DAX, Power BI |
-| Data modelling | Relational modelling, one-to-many relationships |
-| Data Quality | Completeness, uniqueness, validity, consistency |
-| Investigation | Segmentation, repeat-occurrence analysis, exception-rate analysis |
-| Root Cause Assessment | Evidence-based hypotheses about system, process, location and workflow risks |
-| Business Analysis | Business questions, process risks, controls and recommendations |
-| Governance | Data-quality rules, ownership, monitoring and escalation |
-| Visualisation | Power BI dashboards |
-| Documentation and QA | GitHub repository, data dictionary, rule catalogue and recorded validation tests |
+| Analytical modelling | Relational data modelling |
+| Data analysis | SQL, DAX and Power BI |
+| Data visualisation | Power BI reports and dashboards |
+| Data quality | Completeness, uniqueness, validity and consistency |
+| Investigation | Segmentation, aggregation, comparative rates and exception analysis |
+| Business analysis | Business questions, operational risks and requirements |
+| Process improvement | Root-cause assessment and recommended controls |
+| Data governance | Business rules, ownership, monitoring and escalation |
+| Testing and QA | SQL validation, DAX reconciliation and refresh verification |
+| Version control | Git and GitHub |
+| Documentation | Data dictionary, rule catalogue, QA report and reproduction guide |
+
+Each tool serves a specific analytical or business purpose rather than being included solely as a technical demonstration.
 
 ---
 
-## Reproducing This Project
+## 4. Synthetic Dataset
 
-The repository includes the synthetic datasets, SQL analysis,
-Power BI report and supporting documentation.
+The analysis uses a synthetic dataset designed to reflect realistic enrolment administration and data-quality conditions.
 
-For instructions on recreating the database, importing the data,
-running the investigations and reconnecting Power BI, see:
-
-**[Reproduction and Setup Guide](REPRODUCE.md)**
-
-The setup procedure has been documented but has not yet
-been independently tested on a fresh SQL Server installation.
-
----
-
-## Dataset
-
-The synthetic project dataset contains:
+### Dataset Summary
 
 | Dataset | Records |
 |---|---:|
 | Students | 4,200 |
 | Enrolments | 10,075 |
 | Exception occurrences | 3,800 |
-| Reporting runs | 6 |
 | Data-quality rules | 7 |
+| Reporting runs | 6 |
 
-The data represents fictional enrolments across multiple campuses, regions, faculties, study modes and student-administration systems.
+The dataset includes multiple fictional campuses, regions, faculties, study modes and student administration systems.
 
-### Main tables
+### Main Tables
 
 **Students**
+
+Contains student-level information, including:
+
 - Student identifier
 - Date of birth
 - Home region
-- Residency
+- Residency information
 
 **Enrolments**
-- Enrolment and student identifiers
+
+Contains enrolment-level attributes, including:
+
+- Enrolment identifier
+- Student identifier
 - Campus and region
-- Product and qualification
 - Faculty
+- Qualification and product
 - Study mode
 - Source system
 - Enrolment status
 - Contact-information indicators
-- LMS link status
-- Fee/product status
+- LMS unit-link status
+- Fee/product validation status
 - Migration indicator
 
 **Exceptions**
-- Exception occurrence
-- Enrolment and student identifiers
-- Exception code and type
+
+Contains recorded data-quality exception occurrences, including:
+
+- Exception occurrence identifier
+- Enrolment identifier
+- Student identifier
+- Exception code and description
 - Data-quality dimension
 - Severity
 - Reporting date
@@ -119,155 +162,204 @@ The data represents fictional enrolments across multiple campuses, regions, facu
 - Resolution date
 - Remediation action
 
-**DQ Rules**
+**DQ_Rules**
+
+Provides the business-rule reference information used to interpret and validate recorded exceptions.
+
+It includes:
+
 - Rule identifier
 - Data-quality dimension
 - Rule definition
-- Failure indicator
-- Business impact
+- Failure conditions
+- Potential business impact
+
+The complete field definitions are available in the [Data Dictionary](Documentation/Data_Dictionary.md).
+
+The rules are documented in the [Data Quality Rules Catalogue](Documentation/Data_Quality_Rules.md).
 
 ---
 
-## Analytical Architecture
+## 5. Analytical Architecture
 
-The project combines two related workflows: SQL investigation and validation, and Power BI reporting. Both inform the findings and recommendations.
+FATE combines database investigation, analytical modelling, reporting and business improvement assessment.
 
 ```text
 Synthetic Source Data
-        ↓
-SQL Server
-        ├── T-SQL investigation and QA checks
-        │
-        └── Power Query preparation
-                     ↓
-              Power BI data model
-                     ↓
-                 DAX measures
-                     ↓
-              Management reporting
-                     ↓
-         Findings and root-cause hypotheses
-                     ↓
-            Proposed process controls
+         |
+         v
+    SQL Server
+         |
+         +---- T-SQL Investigation
+         |          |
+         |          v
+         |    Data Quality Validation
+         |
+         +---- Power Query
+                    |
+                    v
+             Power BI Model
+                    |
+                    v
+                DAX Measures
+                    |
+                    v
+          Analytical Dashboards
+                    |
+                    v
+          Findings and Insights
+                    |
+                    v
+          Root-Cause Assessment
+                    |
+                    v
+         Recommended Improvements
 ```
 
-The Power BI model uses:
+### Relational Data Model
+
+The principal analytical relationships follow this structure:
 
 ```text
 Students
-   1
-   │
-   *
+   |
+   | One-to-Many
+   v
 Enrolments
-   1
-   │
-   *
+   |
+   | One-to-Many
+   v
 Exceptions
 ```
 
-`DQ_Rules` is retained as a separate governance/reference table.
+`DQ_Rules` is maintained as a separate governance and reference table.
+
+This structure supports analysis at different levels, including:
+
+- Individual students
+- Enrolments
+- Exception occurrences
+- Exception categories
+- Campuses and regions
+- Source systems
+- Reporting periods
+
+An important distinction is maintained between **exception occurrences** and **unique affected enrolments**, because one enrolment may have multiple recorded exceptions.
 
 ---
 
-## Data Preparation
+## 6. Data Preparation and Modelling
 
-Power Query was used to prepare the SQL Server data for analytical modelling.
+Power Query was used to prepare the SQL Server data for reporting and analysis.
 
-Key preparation activities included:
+Preparation activities included:
 
-- validating column data types;
-- explicitly applying Australian date handling;
-- standardising student, enrolment and product identifiers;
-- preserving null resolution dates for unresolved exceptions;
-- creating a `ResolutionDays` field;
-- validating relational keys before creating the Power BI model.
+- Reviewing and assigning appropriate column data types.
+- Applying Australian date interpretation.
+- Standardising student and enrolment identifiers.
+- Preserving null resolution dates for unresolved exceptions.
+- Creating the `ResolutionDays` field.
+- Checking relational identifiers.
+- Preparing data for the Power BI model.
 
-Examples of standardised identifiers include:
+Examples of synthetic identifiers include:
 
 ```text
-StudentID     S001086
-EnrolmentID   E0000001
-ProductID     P108
-CampusID      C08
+StudentID      S001086
+EnrolmentID    E0000001
+ProductID      P108
+CampusID       C08
 ```
 
-The related identifiers were subsequently checked with SQL referential-integrity tests (QA09–QA11 and QA16).
+Additional SQL validation was performed to check relationships between students, enrolments and exceptions.
+
+The resulting data model supports reusable DAX measures and comparative reporting.
 
 ---
 
-## SQL Analysis
+## 7. SQL Analysis
 
-The published [T-SQL script](SQL/FATE_SQL_Analysis.sql) contains **four diagnostic investigations**, followed by database validation and integrity checks:
+T-SQL was used to investigate exception patterns, compare operational risks and validate the underlying data.
 
-1. Duplicate-affected enrolment rates by campus.
-2. Withdrawal/remediation overlap by enrolment status.
-3. Open workloads and average resolution time by exception type.
-4. Exception occurrences and open rates by reporting run.
+### Published Analytical Investigations
 
-It demonstrates `INNER JOIN`, `LEFT JOIN`, CTEs, `COUNT(DISTINCT)`, `CASE`, conditional aggregation, denominator-aware rates and `DATEDIFF` calculations.
+The primary SQL script contains four diagnostic investigations.
 
-Broader analysis of affected enrolments, source systems, regions and occurrence frequency is presented through the [Power BI report](PowerBI/FATE_Data_Quality_Analysis.pbix) and the findings below. These should not be mistaken for additional published SQL query sections.
+| Investigation | Analytical Purpose |
+|---|---|
+| Duplicate rate by campus | Identify campuses with higher proportions of duplicate-affected enrolments |
+| Withdrawal/remediation overlap | Compare withdrawal-related exceptions across enrolment statuses |
+| Remediation performance | Assess open exception workload and resolution times |
+| Exception trends by reporting run | Examine exception volumes and unresolved workload across reporting periods |
 
-### Validation and QA
+The script also includes database record-count validation, referential-integrity checks, business-rule consistency checks and exception-to-source reconciliation.
 
-[Testing_and_QA.md](Documentation/Testing_and_QA.md) records the following work executed in SQL Server on **8 October 2026**:
+### SQL Techniques Demonstrated
 
-| Test references | Validation | Recorded result |
-|---|---|---|
-| QA01–QA04 | Student, enrolment, exception and rule-table counts | All four matched baseline |
-| QA05–QA08 | Execution of four diagnostic SQL investigations | All four returned results without reported SQL errors |
-| QA09–QA11 | Orphan exceptions, orphan enrolments and resolution-date ordering | Zero failed records for each check |
-| QA12 | Exception-code to rule-ID coverage | Zero failed records |
-| QA13–QA16 | Remediation status, resolution-date completeness and student-reference consistency | Zero failed records for each check |
-| QA17 | Exception-to-source reconciliation for EX01, EX02, EX05 and EX06 | 327 occurrences flagged for investigation; not a pass/fail result |
+- `INNER JOIN`
+- `LEFT JOIN`
+- Common Table Expressions (CTEs)
+- `COUNT` and `COUNT(DISTINCT)`
+- `CASE` expressions
+- Conditional aggregation
+- Percentage and rate calculations
+- `DATEDIFF`
+- Null handling
+- Referential-integrity validation
+- Business-rule validation
 
-### QA17 — Additional investigation
+**Published SQL evidence:**
 
-QA17 compared the recorded exception occurrences against **currently stored** enrolment attributes for four selected exception categories. It flagged **327 of 2,679 occurrences (12.2%)** for further review, of which **116** have an Open remediation status.
+[View FATE SQL Analysis](SQL/FATE_SQL_Analysis.sql)
 
-| Exception | Occurrences examined | Flagged for review | Flagged and Open |
-|---|---:|---:|---:|
-| EX01 — Incomplete Contact Details | 762 | 46 | 14 |
-| EX02 — Missing LMS Unit Link | 619 | 193 | 72 |
-| EX05 — Legacy Migration Mismatch | 431 | 48 | 12 |
-| EX06 — Fee/Product Validation | 867 | 40 | 18 |
-| **Total** | **2,679** | **327** | **116** |
+A separate QA20 SQL script documents the reporting-run coverage investigation.
 
-**Interpretation:** QA17 identified discrepancies that require investigation; it did **not** establish 327 false positives or confirmed errors. The dataset lacks historical enrolment-attribute snapshots needed to distinguish valid historical exceptions from corrected records, rule-definition gaps or classification problems. The EX02 online-versus-On-Campus rule applicability requires business clarification. The investigation and follow-up actions are documented in the [QA evidence](Documentation/Testing_and_QA.md), [rule catalogue](Documentation/Data_Quality_Rules.md) and [process-improvement analysis](Documentation/Process_Improvement.md).
-
-**Validation scope:** Passing record-count and integrity checks establishes only the conditions tested. Successful execution of QA05–QA08 confirms the queries ran, not that every analytical interpretation is independently validated. Full Power BI metric reconciliation, refresh logging and the final reporting run's coverage are separate verification considerations.
+[View QA20 Reporting-Run Coverage Investigation](SQL/QA20_Reporting_Run_Coverage.sql)
 
 ---
 
-# Key Findings
+# 8. Key Analytical Findings
 
-## 1. Data-quality exceptions affected more than one quarter of enrolments
+## 8.1 More Than One Quarter of Enrolments Were Affected
 
-Of **10,075 enrolments**, **2,723** experienced at least one exception.
+The dataset contains **10,075 enrolments**, of which **2,723** experienced at least one recorded exception.
 
-**Affected enrolment rate: 27.03%**
+| Metric | Result |
+|---|---:|
+| Total enrolments | 10,075 |
+| Affected enrolments | 2,723 |
+| Affected enrolment rate | 27.03% |
+| Affected students | 2,005 |
 
-A total of **2,005 students** were represented in the affected enrolment population.
+**Finding:** Data-quality exceptions affected approximately 27% of enrolments.
 
----
-
-## 2. A substantial remediation backlog remained
-
-Across **3,800 exception occurrences**:
-
-- **2,495** were resolved;
-- **1,305** remained open;
-- overall open rate was **34.34%**.
-
-Average resolution time for resolved exceptions was approximately **9.5 days**.
+This demonstrates the scale of the issue within the simulated organisation.
 
 ---
 
-## 3. Fee/Product Validation generated the greatest workload
+## 8.2 A Substantial Remediation Backlog Remained
 
-Exception volume by type:
+The exception dataset contains 3,800 recorded occurrences.
 
-| Exception type | Occurrences | Affected enrolments |
+| Metric | Result |
+|---|---:|
+| Total exception occurrences | 3,800 |
+| Resolved occurrences | 2,495 |
+| Open occurrences | 1,305 |
+| Open rate | 34.34% |
+| Average resolution time | Approximately 9.5 days |
+
+**Finding:** More than one-third of recorded exception occurrences remained open.
+
+This represents a substantial potential workload for administrative remediation processes.
+
+---
+
+## 8.3 Fee/Product Validation Generated the Highest Exception Volume
+
+Exception occurrences were distributed across seven categories.
+
+| Exception Type | Occurrences | Affected Enrolments |
 |---|---:|---:|
 | Fee/Product Validation | 867 | 748 |
 | Incomplete Contact Details | 762 | 666 |
@@ -276,346 +368,759 @@ Exception volume by type:
 | Incomplete Enrolment | 425 | 385 |
 | Potential Duplicate Enrolment | 350 | 303 |
 | Withdrawal / Remediation Overlap | 346 | 294 |
+| **Total Occurrences** | **3,800** | |
 
-Volume alone, however, did not identify the most systemic problems.
+Fee/Product Validation accounted for the largest volume of exception occurrences.
+
+However, exception volume alone does not establish which category creates the greatest systemic or operational risk.
 
 ---
 
-## 4. LMS and migration problems showed the highest occurrence frequency
+## 8.4 LMS Linkage and Migration Issues Had Higher Occurrence Frequency
 
-The highest occurrence-per-affected-enrolment ratios were:
+The analysis compared recorded exception occurrences with the number of distinct enrolments affected by each category.
 
-| Exception type | Occurrences per affected enrolment |
+| Exception Type | Occurrences per Affected Enrolment |
 |---|---:|
-| Missing LMS Unit Link | **1.62** |
-| Legacy Migration Mismatch | **1.56** |
+| Missing LMS Unit Link | 1.62 |
+| Legacy Migration Mismatch | 1.56 |
 | Withdrawal / Remediation Overlap | 1.18 |
 | Fee/Product Validation | 1.16 |
 | Potential Duplicate Enrolment | 1.16 |
 | Incomplete Contact Details | 1.14 |
 | Incomplete Enrolment | 1.10 |
 
-The **Missing LMS Unit Link** and **Legacy Migration Mismatch** categories generated more recorded occurrences per affected enrolment than other types. This is a useful signal for further investigation, but it does **not**, on its own, establish that an issue returned after successful remediation or prove a systemic cause.
+**Finding:** Missing LMS Unit Link and Legacy Migration Mismatch had the highest occurrence-to-affected-enrolment ratios.
+
+These results justify further investigation into repeated exception occurrences.
+
+They do not independently prove that previously resolved exceptions reoccurred or establish a specific systemic cause.
 
 ---
 
-## 5. Migrated records had higher observed exception exposure
+## 8.5 Migrated Enrolments Had Higher Exception Exposure
 
-Affected-enrolment rates differed by source system in the synthetic dataset:
+Affected-enrolment rates differed between the two source systems.
 
-| Source system | Affected rate |
+| Source System | Affected Rate |
 |---|---:|
-| EBS Migrated | **35.34%** |
-| PeopleSoft | **25.16%** |
+| EBS Migrated | 35.34% |
+| PeopleSoft | 25.16% |
 
-Migrated records therefore showed approximately a **10 percentage-point higher exception exposure**.
+Migrated enrolments had an affected rate approximately 10.2 percentage points higher than PeopleSoft enrolments.
+
+**Finding:** The observed difference suggests that migrated records warrant additional investigation and potentially more targeted validation controls.
+
+The results do not independently prove that migration processes caused the exceptions.
 
 ---
 
-## 6. Migration problems were geographically concentrated
+## 8.6 Migration Mismatches Were Concentrated Geographically
 
-Legacy migration mismatch rates among migrated records were:
+Migration mismatch rates were compared across regions.
 
-| Region | Migration mismatch rate |
+| Region | Migration Mismatch Rate |
 |---|---:|
-| Western | **17.36%** |
+| Western | 17.36% |
 | Coastal | 12.47% |
 | Northern | 11.47% |
 | Central | 8.22% |
 
-The Western region's observed rate was more than twice Central's. This supports prioritising a regional investigation, without establishing the reason for the difference.
+The Western region recorded the highest observed rate.
+
+**Finding:** The regional difference supports prioritising further investigation into migration validation, data transformation and source-record consistency.
+
+The underlying cause remains a hypothesis until additional process or technical evidence is available.
 
 ---
 
-## 7. Duplicate risk was concentrated at specific campuses
+## 8.7 Duplicate Enrolment Risk Varied by Campus
 
-The strongest duplicate-affected rates were:
+Duplicate-affected enrolment rates were compared across campuses.
 
-| Campus | Duplicate-affected rate |
+| Campus | Duplicate-Affected Rate |
 |---|---:|
-| Harbour City | **6.56%** |
-| Metro South | **5.25%** |
+| Harbour City | 6.56% |
+| Metro South | 5.25% |
 | Riverbend | 2.37% |
 | Highland | 2.31% |
 | Greenfield | 2.22% |
 
-The sharp difference between the two leading campuses and the remainder suggests local process or record-creation controls require further review.
+Harbour City and Metro South recorded noticeably higher rates than the other listed campuses.
+
+**Finding:** The concentration supports further review of local enrolment creation practices, duplicate-prevention controls and administrative workflows.
 
 ---
 
-## 8. Withdrawal/remediation overlap indicated a process-control risk
+## 8.8 Withdrawal and Remediation Overlap Indicated a Workflow Risk
 
-Withdrawal/remediation overlap was highly concentrated among withdrawn records:
+Withdrawal-related exception rates were compared across enrolment statuses.
 
-| Enrolment status | Overlap rate |
+| Enrolment Status | Overlap Rate |
 |---|---:|
-| Withdrawn | **15.82%** |
+| Withdrawn | 15.82% |
 | Completed | 0.33% |
 | Active | 0.32% |
 | Pending | 0.12% |
 
-The overlap suggests a potential **workflow and business-process control risk**. However, the aggregate counts alone do not establish whether remediation happened before or after a withdrawal-status change; event-level lifecycle timestamps or process evidence would be needed to confirm that sequence.
+Withdrawn enrolments had a substantially higher overlap rate.
+
+**Finding:** The relationship suggests a potential process-control risk when exception remediation and enrolment withdrawal activities intersect.
+
+The available data does not establish the chronological order of withdrawal and remediation activities.
+
+Additional lifecycle timestamps or process evidence would be needed to determine whether remediation continued unnecessarily after withdrawal began.
 
 ---
 
-## Power BI — Data Quality Overview
+# 9. Power BI Reporting
 
-The first report page provides an executive overview of:
+Two Power BI report pages were developed to communicate analytical results and support further investigation.
 
-- total enrolments;
-- affected enrolments;
-- affected students;
-- exception volume;
-- open workload;
-- affected and open rates;
-- resolution performance;
-- source-system risk;
-- exception composition;
-- reporting-run trends.
+## Report 1 — Data Quality Overview
 
-![Data Quality Overview](Images/01_Data_Quality_Overview.png)
+The first report provides a management-level view of enrolment data quality.
 
----
+It includes:
 
-## Power BI — Investigation & Root Cause
+- Total enrolments
+- Affected enrolments and students
+- Total exception occurrences
+- Open exception workload
+- Affected and open rates
+- Average resolution time
+- Affected rate by source system
+- Open rate by exception type
+- Exception volume by category
+- Exception trends by reporting run
 
-The second report page focuses on diagnostic analysis:
+![FATE Data Quality Overview](Images/01_Data_Quality_Overview.png)
 
-- migration mismatch by region;
-- duplicate-affected rate by campus;
-- withdrawal/remediation overlap;
-- exception occurrences per affected enrolment.
+## Report 2 — Investigation & Root Cause
 
-![Investigation and Root Cause](Images/02_Investigation_Root_Cause.png)
+The second report focuses on patterns that warrant further investigation.
 
----
+It includes:
 
-# Root Cause Assessment
+- Migration mismatch rates by region
+- Duplicate-affected rates by campus
+- Withdrawal/remediation overlap by enrolment status
+- Exception occurrences per affected enrolment
+- Analytical findings
+- Recommended preventative controls
 
-The findings support several **root-cause hypotheses** requiring process or system-level validation. Associations and rates alone do not prove specific technical or operational causes.
+![FATE Investigation and Root Cause](Images/02_Investigation_Root_Cause.png)
 
-### Migration quality
+### Power BI Project File
 
-Higher exception rates among migrated records, particularly in the Western region, suggest migration-related mapping, transformation or validation weaknesses.
+[View Power BI Project](PowerBI/FATE_Data_Quality_Analysis.pbix)
 
-### LMS linkage
+The report contains reusable DAX measures, relational modelling and visualisations intended to support both management reporting and diagnostic analysis.
 
-The relatively high occurrence-per-affected-enrolment ratio for Missing LMS Unit Link justifies investigating whether upstream integration or validation controls contribute to repeated exceptions. It does not show that previous remediation failed.
-
-### Duplicate creation
-
-Concentration at Harbour City and Metro South suggests localised workflow, user-process or record-creation controls may differ from other campuses.
-
-### Withdrawal workflow
-
-The association between withdrawn status and EX04 exceptions warrants testing whether remediation workflows sufficiently account for enrolment lifecycle changes. The event sequence is not proven by these summary results.
+The displayed metrics were subsequently reviewed through QA18 and QA19.
 
 ---
 
-# Proposed Controls
+# 10. Testing and Quality Assurance
 
-These are recommendations derived from the synthetic analysis. They have **not** been implemented or shown to improve real operational outcomes.
+Testing and validation form an important part of the project.
 
-## 1. Migration validation
+The purpose is to distinguish successful query execution from reliable analytical results and to identify assumptions or limitations that require further investigation.
 
-Introduce pre-validation and reconciliation checks for migrated records, with targeted investigation of Western-region migration outcomes.
+Testing activities were documented on **8 October 2026**.
 
-## 2. Duplicate prevention
+## QA Summary
 
-Review record-creation processes at Harbour City and Metro South and introduce duplicate checks before new enrolment records are committed.
+| Test Reference | Validation Area | Outcome |
+|---|---|---|
+| QA01–QA04 | Database record-count validation | PASS |
+| QA05–QA08 | SQL investigation execution | EXECUTED |
+| QA09–QA11 | Referential integrity and resolution-date checks | PASS |
+| QA12–QA16 | Data-quality rules and record consistency | PASS |
+| QA17 | Exception-to-source reconciliation | INVESTIGATION REQUIRED |
+| QA18 | SQL-to-Power BI reconciliation and identifier checks | PASS |
+| QA19 | Local Power BI refresh verification | PASS |
+| QA20 | Reporting-run coverage investigation | INVESTIGATION REQUIRED |
 
-## 3. Withdrawal-status validation
+The completed tests provide evidence for the specific calculations and integrity conditions examined.
 
-Check current enrolment status before remediation work is assigned or actioned.
+They do not establish that the entire analytical solution is free of errors or that all underlying business rules have been independently validated.
 
-Records already progressing through withdrawal should be paused, filtered or routed through the appropriate withdrawal process.
+**Complete QA documentation:**
 
-## 4. Recurrence monitoring
-
-Define thresholds for multiple occurrences against the same enrolment and exception type. Confirm whether incidents remain unresolved, have been re-opened or represent genuinely new events before escalating from record-level remediation to process-level investigation.
-
-## 5. Data ownership
-
-Assign clear ownership for major data-quality domains and exception categories.
-
-Owners should be responsible for:
-
-- monitoring;
-- investigation;
-- remediation;
-- escalation;
-- preventative controls;
-- closure validation.
-
-## 6. Ongoing reporting
-
-Continue monitoring:
-
-- exception rates;
-- recurrence;
-- unresolved workload;
-- resolution time;
-- location/system concentrations;
-- control effectiveness.
+[Testing and Quality Assurance Report](Documentation/Testing_and_QA.md)
 
 ---
 
-# Data Quality Framework
+## QA17 — Exception-to-Source Reconciliation
 
-The project uses seven defined data-quality rules spanning key dimensions including:
+QA17 compared selected recorded exceptions with currently stored enrolment attributes.
+
+The investigation focused on four exception categories.
+
+| Exception | Occurrences Examined | Flagged for Review | Flagged and Open |
+|---|---:|---:|---:|
+| EX01 — Incomplete Contact Details | 762 | 46 | 14 |
+| EX02 — Missing LMS Unit Link | 619 | 193 | 72 |
+| EX05 — Legacy Migration Mismatch | 431 | 48 | 12 |
+| EX06 — Fee/Product Validation | 867 | 40 | 18 |
+| **Total** | **2,679** | **327** | **116** |
+
+**Result: INVESTIGATION REQUIRED**
+
+Of the 2,679 occurrences examined, 327 (12.2%) met diagnostic conditions requiring further investigation.
+
+These findings represent potential inconsistencies rather than confirmed data errors.
+
+### Key Observations
+
+- EX02 accounted for the largest number of flagged occurrences.
+- Some open exceptions were associated with current enrolment attributes that no longer indicated the recorded issue.
+- Historical enrolment-attribute snapshots were not available for each reporting date.
+- The EX02 rule requires clarification regarding LMS requirements for different study modes.
+
+Historical exceptions may have been valid when recorded, even if current attributes no longer show the original condition.
+
+QA17 therefore remains an investigation rather than a completed correction exercise.
+
+[View QA17 SQL Investigation](SQL/FATE_SQL_Analysis.sql)
+
+---
+
+## QA18 — SQL-to-Power BI Reconciliation
+
+QA18 compared the existing Power BI measures with documented SQL baseline values.
+
+### Metric Reconciliation
+
+| Metric | SQL Baseline | Power BI Result | Outcome |
+|---|---:|---:|---|
+| Total Enrolments | 10,075 | 10,075 | PASS |
+| Affected Enrolments | 2,723 | 2,723 | PASS |
+| Affected Rate | 27.03% | 27.03% | PASS |
+| Total Exception Occurrences | 3,800 | 3,800 | PASS |
+| Open Exceptions | 1,305 | 1,305 | PASS |
+
+The underlying DAX measures were reviewed.
+
+### Additional Integrity Validation
+
+A read-only DAX query was executed in Power BI Desktop.
+
+| Check | Actual | Outcome |
+|---|---:|---|
+| Total enrolment rows | 10,075 | PASS |
+| Unique enrolment IDs | 10,075 | PASS |
+| Blank enrolment IDs | 0 | PASS |
+| Blank exception enrolment IDs | 0 | PASS |
+
+**Result: PASS**
+
+All five inspected Power BI metrics reconciled with the SQL baseline.
+
+The additional identifier-integrity checks also passed.
+
+This establishes consistency for the metrics and conditions tested, rather than independent verification of every transformation or calculation within the report.
+
+**Published DAX evidence:**
+
+[QA18 Power BI Reconciliation Query](PowerBI/QA18_PowerBI_Reconciliation.dax)
+
+---
+
+## QA19 — Power BI Refresh Verification
+
+QA19 assessed whether the local Power BI report could refresh without reported errors while retaining its expected analytical values.
+
+The test was performed using a separate local backup of the Power BI project.
+
+### Validation Activities
+
+- A local Power BI refresh was performed.
+- The refresh completed without reported errors.
+- Five dashboard KPI values were checked against the existing baseline.
+- All four Data Quality Overview charts remained populated.
+
+### Outcome
+
+**Result: PASS**
+
+The inspected metrics remained consistent after the refresh.
+
+This confirms the documented local refresh behaviour.
+
+It does not constitute verification of scheduled refresh in Power BI Service or prove that every historical reporting run was complete.
+
+[View QA19 Documentation](Documentation/Testing_and_QA.md)
+
+---
+
+## QA20 — Reporting-Run Coverage Investigation
+
+QA20 investigated a substantial decline in exception occurrences during the final reporting run.
+
+### Reporting-Run Comparison
+
+| Reporting Date | Exception Occurrences |
+|---|---:|
+| 2 March 2026 | 614 |
+| 16 March 2026 | 758 |
+| 30 March 2026 | 743 |
+| 13 April 2026 | 747 |
+| 27 April 2026 | 720 |
+| 11 May 2026 | 218 |
+
+The final run recorded **502 fewer occurrences**, representing a **69.72% decrease** from the preceding run.
+
+Reporting intervals remained consistent at 14 days.
+
+### Investigation Findings
+
+Further SQL comparisons established that:
+
+- All seven exception categories remained represented, but every category declined.
+- All eight campuses remained represented, but every campus declined.
+- Both source systems experienced nearly identical proportional reductions.
+
+### Source-System Comparison
+
+| Source System | 27 April | 11 May | Change |
+|---|---:|---:|---:|
+| EBS Migrated | 201 | 61 | -69.65% |
+| PeopleSoft | 519 | 157 | -69.75% |
+| **Total** | **720** | **218** | **-69.72%** |
+
+The consistency of the decline across multiple dimensions indicates a broad reporting anomaly.
+
+However, it does not establish the reason for the reduction.
+
+### Unresolved Reporting Risk
+
+The available dataset does not contain sufficient information to determine:
+
+- Whether every expected enrolment was evaluated during the final run.
+- Whether the source extract was complete.
+- Whether all processing stages completed successfully.
+- Whether exception detection rules changed.
+- Whether the reduction represents genuine operational improvement.
+
+Additional execution logs, source-population counts and reporting-run metadata would be required.
+
+**Result: INVESTIGATION REQUIRED**
+
+The decline must not be presented as confirmed operational improvement or confirmed reporting failure.
+
+**Published SQL evidence:**
+
+[QA20 Reporting-Run Coverage Investigation](SQL/QA20_Reporting_Run_Coverage.sql)
+
+---
+
+# 11. Root-Cause Assessment
+
+The analytical results identify potential systemic risk areas.
+
+These are evidence-based hypotheses, not proven root causes.
+
+## Migration Quality
+
+Higher exception exposure among migrated enrolments, particularly in the Western region, suggests that migration mapping, transformation or validation processes may warrant further review.
+
+## LMS Linkage
+
+The higher occurrence frequency associated with Missing LMS Unit Link exceptions suggests a need to examine integration processes, linkage validation and exception-classification requirements.
+
+## Duplicate Enrolment Creation
+
+Higher duplicate-affected rates at Harbour City and Metro South suggest that local record-creation processes and duplicate-prevention controls should be investigated.
+
+## Withdrawal and Remediation
+
+The concentration of withdrawal/remediation overlap among withdrawn enrolments suggests that remediation workflows should consider enrolment lifecycle status.
+
+Additional process evidence is required to establish the sequence of administrative actions.
+
+## Reporting Completeness
+
+QA20 demonstrated that substantial changes in reported exception volumes require verification of the processed population before they can be interpreted as meaningful performance improvements.
+
+These observations inform the proposed controls below.
+
+---
+
+# 12. Proposed Process Improvements
+
+The recommendations are derived from the synthetic analysis.
+
+They have not been implemented or demonstrated to produce real operational improvements.
+
+## 12.1 Migration Validation
+
+Introduce additional checks for migrated records, including:
+
+- Pre-migration validation.
+- Source-to-target reconciliation.
+- Mapping and transformation checks.
+- Targeted investigation of regions with higher observed mismatch rates.
+
+## 12.2 Duplicate Prevention
+
+Review record-creation practices and consider preventative controls such as:
+
+- Duplicate detection before record creation.
+- Standardised enrolment search procedures.
+- Clear handling of possible duplicate records.
+- Monitoring of campus-level duplicate rates.
+
+## 12.3 Withdrawal-Status Validation
+
+Introduce validation of current enrolment status before remediation activities are assigned or performed.
+
+Records progressing through withdrawal should be reviewed and routed according to the applicable business process.
+
+## 12.4 Exception Recurrence Monitoring
+
+Monitor multiple exception occurrences affecting the same enrolments.
+
+Investigation should distinguish between:
+
+- Historical occurrences of an unresolved issue.
+- Newly created exceptions.
+- Reopened issues.
+- Potential classification problems.
+- Repeated process or system failures.
+
+## 12.5 Data Ownership and Governance
+
+Establish clear responsibility for:
+
+- Data-quality rule definitions.
+- Exception monitoring.
+- Investigation and remediation.
+- Escalation.
+- Validation of resolution.
+- Review of recurring problems.
+- Preventative-control effectiveness.
+
+## 12.6 Reporting-Run Completeness Controls
+
+Introduce reporting controls to capture:
+
+- Unique reporting-run identifiers.
+- Expected source-population counts.
+- Actual processed-record counts.
+- Rejected or excluded records.
+- Execution timestamps.
+- Run-completion status.
+- Data-quality rule versions.
+- Significant changes in exception volumes.
+
+Unusual reporting changes should be investigated before being communicated as operational improvements.
+
+## 12.7 Continuous Monitoring
+
+Develop regular monitoring of:
+
+- Affected-enrolment rates.
+- Exception volumes.
+- Open remediation workload.
+- Resolution performance.
+- Multiple exception occurrences.
+- System and location concentrations.
+- Reporting completeness.
+- Control effectiveness.
+
+Detailed recommendations are recorded in the:
+
+[Process Improvement Analysis](Documentation/Process_Improvement.md)
+
+---
+
+# 13. Data Quality and Governance Framework
+
+FATE applies seven documented data-quality rules across important quality dimensions.
+
+These include:
 
 - **Completeness**
 - **Uniqueness**
 - **Validity**
 - **Consistency**
 
-Each rule connects:
+The framework connects business requirements, data-quality rules, validation results and operational improvement.
 
 ```text
-Business Requirement
-        ↓
-Data Quality Rule
-        ↓
-Validation / Exception
-        ↓
+Business Requirements
+         |
+         v
+Data Quality Rules
+         |
+         v
+Validation and Monitoring
+         |
+         v
+Exception Identification
+         |
+         v
 Investigation
-        ↓
-Root Cause
-        ↓
-Control
-        ↓
-Monitoring
+         |
+         v
+Root-Cause Assessment
+         |
+         v
+Recommended Controls
+         |
+         v
+Ongoing Evaluation
 ```
 
-This framework proposes a transition from reactive correction toward prevention and governance. Effectiveness would need to be demonstrated through implementation and follow-up monitoring.
+The intended direction is to move from reactive exception correction toward more effective prevention, monitoring and governance.
+
+Implementation and measured effectiveness remain future activities.
 
 ---
 
-# Skills Demonstrated
+# 14. Skills Demonstrated
 
-### Data Analysis
-- exploratory analysis;
-- segmentation;
-- KPI design;
-- comparative rates;
-- analysis of multiple occurrences per affected enrolment;
-- trend analysis;
-- interpretation of operational data.
+## Data Analysis
 
-### SQL / T-SQL
-- joins;
-- CTEs;
-- aggregations;
-- conditional logic;
-- distinct counts;
-- calculated rates;
-- date calculations;
-- analytical query design.
+- Exploratory analysis
+- Dataset segmentation
+- KPI development
+- Comparative rates
+- Trend analysis
+- Exception frequency analysis
+- Evidence-based interpretation
 
-### Power Query
-- key standardisation;
-- type validation;
-- locale handling;
-- null handling;
-- calculated columns;
-- transformation sequencing.
+## SQL and T-SQL
 
-### Power BI / DAX
-- relational modelling;
-- reusable measures;
-- KPI cards;
-- interactive cross-filtering;
-- management dashboards;
-- investigative reporting.
+- Relational queries
+- Joins
+- CTEs
+- Aggregations
+- Conditional logic
+- Distinct counts
+- Date calculations
+- Data integrity testing
+- Analytical query development
 
-### Data Quality
-- quality dimensions;
-- exception management;
-- repeat-occurrence analysis;
-- remediation monitoring;
-- rule-based controls.
+## Power Query
 
-### Business Analysis
-- business-question definition;
-- process-risk identification;
-- root-cause investigation;
-- business-control design;
-- recommendations.
+- Data-type validation
+- Identifier standardisation
+- Date and locale handling
+- Null handling
+- Calculated fields
+- Data preparation for modelling
 
-### Governance & Process Improvement
-- data ownership;
-- proposed preventative controls;
-- monitoring thresholds;
-- remediation workflow redesign recommendations;
-- escalation design.
+## Power BI and DAX
+
+- Relational data modelling
+- DAX measures
+- KPI reporting
+- Comparative visualisations
+- Management reporting
+- Diagnostic dashboards
+- Metric reconciliation
+- Refresh validation
+
+## Data Quality and Testing
+
+- Data quality dimensions
+- Business-rule validation
+- Referential integrity
+- Exception investigation
+- Source-record reconciliation
+- Testing documentation
+- Identification of unresolved risks
+
+## Business Analysis
+
+- Business problem definition
+- Analytical question development
+- Process-risk identification
+- Root-cause assessment
+- Business-rule interpretation
+- Recommendations and controls
+
+## Process Improvement and Governance
+
+- Current-state assessment
+- Future-state recommendations
+- Data ownership
+- Preventative controls
+- Monitoring and escalation
+- Reporting completeness requirements
+
+## Professional Documentation
+
+- Technical documentation
+- Analytical findings
+- Test evidence
+- Reproducible queries
+- Project structure
+- Version control and GitHub publication
 
 ---
 
-# Repository Structure
+# 15. Reproducing the Project
+
+The repository contains the synthetic project datasets, SQL analysis, Power BI file and supporting documentation.
+
+A reproduction guide explains how to:
+
+1. Prepare a compatible SQL Server environment.
+2. Create the FATE analytical database.
+3. Import the synthetic datasets.
+4. Run the SQL investigations.
+5. Reconnect the Power BI project to the database.
+6. Execute the published validation queries.
+
+**Setup instructions:**
+
+[Reproduction and Setup Guide](REPRODUCE.md)
+
+The setup procedure is documented, but independent reproduction on a fresh SQL Server installation has not yet been verified.
+
+---
+
+# 16. Repository Structure
 
 ```text
-FATE/
-│
-├── README.md
-│
-├── Data/
-│
-├── Documentation/
-│   ├── Data_Dictionary.md
-│   ├── Data_Quality_Rules.md
-│   ├── Process_Improvement.md
-│   └── Testing_and_QA.md
-│
-├── Images/
-│   ├── 01_Data_Quality_Overview.png
-│   └── 02_Investigation_Root_Cause.png
-│
-├── PowerBI/
-│   └── FATE_Data_Quality_Analysis.pbix
-│
-└── SQL/
-    └── FATE_SQL_Analysis.sql
+FATE-data-quality-analysis/
+|
+|-- README.md
+|-- REPRODUCE.md
+|-- .gitignore
+|
+|-- Data/
+|   |-- Students.csv
+|   |-- Enrolments.csv
+|   |-- Exceptions.csv
+|   `-- DQ_Rules.csv
+|
+|-- Documentation/
+|   |-- Data_Dictionary.md
+|   |-- Data_Quality_Rules.md
+|   |-- Process_Improvement.md
+|   `-- Testing_and_QA.md
+|
+|-- Images/
+|   |-- 01_Data_Quality_Overview.png
+|   `-- 02_Investigation_Root_Cause.png
+|
+|-- PowerBI/
+|   |-- FATE_Data_Quality_Analysis.pbix
+|   `-- QA18_PowerBI_Reconciliation.dax
+|
+`-- SQL/
+    |-- FATE_SQL_Analysis.sql
+    `-- QA20_Reporting_Run_Coverage.sql
 ```
 
 ---
 
-# Project Status
+# 17. Project Status
 
-**Core analytical release and supporting documentation published.**
+**Status: Core analytical release published. Validation evidence and supporting documentation available.**
 
-Completed and included in this repository:
+## Completed Work
 
-- synthetic dataset and SQL Server implementation;
-- four T-SQL diagnostic investigations, recorded QA01–QA16 checks, and the QA17 exception-to-source investigation;
-- Power Query preparation, relational data model and DAX measures;
-- two Power BI report pages and exported screenshots;
-- findings, root-cause hypotheses and proposed controls;
-- [data dictionary](Documentation/Data_Dictionary.md) and [data-quality rule catalogue](Documentation/Data_Quality_Rules.md);
-- [current-state and future-state process improvement analysis](Documentation/Process_Improvement.md);
-- [testing and QA documentation](Documentation/Testing_and_QA.md).
+- Synthetic dataset development.
+- SQL Server database implementation.
+- Four principal SQL diagnostic investigations.
+- Database record-count validation.
+- Referential-integrity and business-rule checks.
+- Exception-to-source reconciliation investigation (QA17).
+- Power Query preparation and relational modelling.
+- Two Power BI analytical report pages.
+- DAX measures and management KPIs.
+- SQL-to-Power BI metric reconciliation (QA18).
+- Enrolment identifier integrity validation.
+- Local Power BI refresh verification (QA19).
+- Reporting-run coverage investigation (QA20).
+- Analytical findings and root-cause hypotheses.
+- Recommended operational and governance controls.
+- Data dictionary and rule catalogue.
+- Process improvement documentation.
+- Testing and quality assurance report.
+- Published SQL and DAX validation scripts.
+- Reproduction guide.
 
-**Remaining verification limitations:** Independent reconciliation of all Power BI measures against SQL, evidence of the latest Power BI refresh status, and an explanation for the smaller final reporting run have not been fully documented. The final reporting run (11 May 2026: 218 occurrences) is materially smaller than earlier runs; it must not be interpreted as confirmed improvement without assessing reporting coverage. The QA17 flags also remain investigation items rather than confirmed data errors because historical attribute snapshots and validated rule applicability are not available.
+## Published Technical Evidence
 
-Potential later extension:
+| Deliverable | Location |
+|---|---|
+| SQL investigations and integrity checks | [FATE_SQL_Analysis.sql](SQL/FATE_SQL_Analysis.sql) |
+| QA20 reporting-run investigation | [QA20_Reporting_Run_Coverage.sql](SQL/QA20_Reporting_Run_Coverage.sql) |
+| Power BI report | [FATE_Data_Quality_Analysis.pbix](PowerBI/FATE_Data_Quality_Analysis.pbix) |
+| QA18 DAX validation | [QA18_PowerBI_Reconciliation.dax](PowerBI/QA18_PowerBI_Reconciliation.dax) |
+| Testing and QA | [Testing_and_QA.md](Documentation/Testing_and_QA.md) |
+| Data dictionary | [Data_Dictionary.md](Documentation/Data_Dictionary.md) |
+| Data quality rules | [Data_Quality_Rules.md](Documentation/Data_Quality_Rules.md) |
+| Process improvement | [Process_Improvement.md](Documentation/Process_Improvement.md) |
+| Reproduction guide | [REPRODUCE.md](REPRODUCE.md) |
 
-- Python/pandas validation workflow;
-- automated exception monitoring;
-- responsible AI-assisted triage assessment.
+## Outstanding Investigations
+
+### QA17 — Exception-to-Source Reconciliation
+
+327 of 2,679 examined exception occurrences require further investigation.
+
+Historical attribute limitations and business-rule interpretation prevent definitive classification of the flagged records as errors.
+
+### QA20 — Reporting-Run Coverage
+
+The final reporting run recorded 69.72% fewer exception occurrences than the previous run.
+
+The available data cannot establish whether this reflects genuine improvement or incomplete reporting coverage.
+
+Additional reporting-run metadata and source-population evidence are required.
+
+Neither unresolved investigation is presented as a confirmed operational failure or improvement.
+
+## Potential Future Development
+
+- Python and pandas validation workflows.
+- Automated data-quality checks.
+- Reporting-run completeness monitoring.
+- Automated exception anomaly detection.
+- Exception prioritisation and alerting.
+- Responsible AI-assisted exception triage assessment.
+- Additional control-effectiveness testing.
+- Expanded data governance and process improvement analysis.
+
+These potential extensions are not represented as completed work.
 
 ---
 
-## Development Note
+# 18. Development Note
 
-AI-assisted tools were used during development to support ideation, troubleshooting, documentation and iterative problem solving.
+AI-assisted tools were used during project development to support:
 
-The project author reviewed query execution, reported results, model behaviour, interpretation and recommendations. AI-assisted output was not treated as evidence without checking it against the project data and implemented work.
+- Ideation
+- Technical learning
+- Query development and troubleshooting
+- Documentation
+- Debugging
+- Iterative problem-solving
+
+The project author retained responsibility for reviewing the analysis, executing queries, checking results, validating Power BI calculations and evaluating the recommendations.
+
+AI-generated outputs were not treated as verified evidence without being checked against the project data and implemented work.
 
 This reflects a **human-in-the-loop approach to AI-assisted analytical development**.
 
 ---
 
-## Disclaimer
+# 19. Disclaimer
 
-This project is a fictional portfolio case study.
+This project is a fictional professional portfolio demonstration.
 
-**FATE — Fictional Academy of Training and Education** is not a real education provider. All student, enrolment, system, campus and exception data is synthetic and was created specifically for analytical demonstration purposes.
+**FATE — Fictional Academy of Training and Education** is not a real education provider.
+
+All student, enrolment, campus, source-system and exception data is synthetic.
+
+The analysis is intended to demonstrate technical capabilities, analytical reasoning, business understanding and practical approaches to data quality and operational improvement.
+
+Findings and recommendations do not represent the actual performance, systems or processes of any real organisation.
