@@ -281,3 +281,70 @@ INNER JOIN dbo.Enrolments e
 WHERE x.StudentID <> e.StudentID
    OR x.StudentID IS NULL
    OR e.StudentID IS NULL;
+
+
+/* =========================================================
+   9. EXCEPTION-TO-SOURCE RECONCILIATION
+   QA17: Identify exceptions requiring further investigation
+   against current enrolment attributes
+   ========================================================= */
+
+WITH RuleReview AS (
+    SELECT
+        x.ExceptionCode,
+        x.EnrolmentID,
+        x.RemediationStatus,
+
+        CASE
+            WHEN x.ExceptionCode = 'EX01'
+                 AND TRY_CONVERT(bit, e.EmailPresent) = 1
+                 AND TRY_CONVERT(bit, e.PhonePresent) = 1
+            THEN 1
+
+            WHEN x.ExceptionCode = 'EX02'
+                 AND (
+                     e.StudyMode <> 'Online'
+                     OR e.LMSUnitLinkStatus <> 'Missing'
+                 )
+            THEN 1
+
+            WHEN x.ExceptionCode = 'EX05'
+                 AND TRY_CONVERT(bit, e.MigrationFlag) = 0
+            THEN 1
+
+            WHEN x.ExceptionCode = 'EX06'
+                 AND e.FeeProductStatus = 'Valid'
+            THEN 1
+
+            ELSE 0
+        END AS RequiresReview
+
+    FROM dbo.Exceptions x
+    INNER JOIN dbo.Enrolments e
+        ON x.EnrolmentID = e.EnrolmentID
+
+    WHERE x.ExceptionCode IN (
+        'EX01', 'EX02', 'EX05', 'EX06'
+    )
+)
+
+SELECT
+    ExceptionCode,
+    COUNT(*) AS TotalOccurrences,
+
+    SUM(RequiresReview) AS OccurrencesForReview,
+
+    COUNT(DISTINCT CASE
+        WHEN RequiresReview = 1
+        THEN EnrolmentID
+    END) AS EnrolmentsForReview,
+
+    SUM(CASE
+        WHEN RequiresReview = 1
+             AND RemediationStatus = 'Open'
+        THEN 1 ELSE 0
+    END) AS OpenOccurrencesForReview
+
+FROM RuleReview
+GROUP BY ExceptionCode
+ORDER BY ExceptionCode;
