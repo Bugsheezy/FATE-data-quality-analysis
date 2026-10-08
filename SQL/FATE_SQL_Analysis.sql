@@ -214,3 +214,70 @@ SELECT
     COUNT(*)
 FROM dbo.Exceptions
 WHERE ResolvedDate < ReportDate;
+
+
+/* =========================================================
+   7. DATA QUALITY RULE COVERAGE
+   QA12: Verify exception codes have matching rule IDs
+   ========================================================= */
+
+SELECT
+    'QA12 - Missing DQ Rule' AS TestName,
+    COUNT(*) AS FailedRecords
+FROM dbo.Exceptions x
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM dbo.DQ_Rules r
+    WHERE r.RuleID =
+        CONCAT('DQ', RIGHT(x.ExceptionCode, 2))
+)
+OR x.ExceptionCode IS NULL
+OR x.ExceptionCode NOT LIKE 'EX[0-9][0-9]';
+
+
+
+/* =========================================================
+   8. REMEDIATION AND RECORD CONSISTENCY
+   QA13–QA16
+   ========================================================= */
+
+-- QA13: Invalid remediation statuses
+SELECT
+    'QA13 - Invalid Remediation Status' AS TestName,
+    COUNT(*) AS FailedRecords
+FROM dbo.Exceptions
+WHERE RemediationStatus IS NULL
+   OR RemediationStatus NOT IN ('Open', 'Resolved')
+
+UNION ALL
+
+-- QA14: Resolved exceptions without resolution dates
+SELECT
+    'QA14 - Resolved Without Date',
+    COUNT(*)
+FROM dbo.Exceptions
+WHERE RemediationStatus = 'Resolved'
+  AND ResolvedDate IS NULL
+
+UNION ALL
+
+-- QA15: Open exceptions with resolution dates
+SELECT
+    'QA15 - Open With Resolution Date',
+    COUNT(*)
+FROM dbo.Exceptions
+WHERE RemediationStatus = 'Open'
+  AND ResolvedDate IS NOT NULL
+
+UNION ALL
+
+-- QA16: Exception student differs from enrolment student
+SELECT
+    'QA16 - Student ID Mismatch',
+    COUNT(*)
+FROM dbo.Exceptions x
+INNER JOIN dbo.Enrolments e
+    ON x.EnrolmentID = e.EnrolmentID
+WHERE x.StudentID <> e.StudentID
+   OR x.StudentID IS NULL
+   OR e.StudentID IS NULL;
