@@ -1,7 +1,7 @@
 
 # Testing and Quality Assurance
 
-## FATE — Story 01: The Exception
+## FATE — Enrolment Data Quality Analysis
 
 ### 1. Purpose
 
@@ -53,7 +53,7 @@ The SQL output also supports these arithmetic checks:
 These figures were reconciled against the displayed SQL results.
 
 
-### Additional Integrity Validation — 8 October 2026
+### 6. Referential Integrity Validation
 
 | Test | Description | Failed Records | Result |
 |---|---|---:|---|
@@ -66,7 +66,7 @@ All three checks returned zero failures in SQL Server.
 These results confirm referential integrity for the relationships tested and valid resolution-date ordering for non-null dates.
 
 
-### 6. Additional Data Quality Validation
+### 7. Additional Data Quality Validation
 
 The following tests were executed in SQL Server on 8 October 2026.
 
@@ -83,7 +83,7 @@ All five tests returned zero failures.
 These results confirm that the tested records satisfy the specified rule-code, remediation-status and student-reference checks.
 
 
-### QA17 — Exception-to-Source Reconciliation
+### 8. Exception-to-Source Reconciliation (QA17)
 
 **Validation date:** 8 October 2026
 
@@ -143,7 +143,7 @@ across all four exception categories.
 
 No source records were modified during this investigation.
 
-### Outstanding Quality Checks
+### 9. Outstanding Quality Checks
 
 The following checks remain outstanding:
 
@@ -154,16 +154,22 @@ The following checks remain outstanding:
 These checks must not be marked as passed without supporting evidence.
 
 
-### 7. Limitations
+### 10. Limitations
 
 The dataset is synthetic and its results do not represent actual organisational performance.
 
 Identified associations do not independently prove root causes. Proposed controls and improvements require testing before effectiveness can be claimed.
 
-### 8. Conclusion
+### 11. Conclusion
 
-The initial SQL record-count validation passed, and the four published analytical investigations executed successfully.
 
-Referential-integrity and resolution-date ordering tests passed. Additional business-rule, Power BI reconciliation and reporting-coverage checks remain outstanding.
+The initial database record-count validation passed, and the four documented SQL investigations executed successfully.
 
-This document distinguishes completed tests from further validation requirements.
+Referential integrity, resolution-date ordering and the specified data-quality validation checks passed.
+
+Exception-to-source reconciliation (QA17) identified 327 of 2,679 examined exception occurrences requiring further investigation. These findings represent potential inconsistencies rather than confirmed data errors.
+
+SQL-to-Power BI reconciliation, Power BI refresh verification and reporting-run coverage checks remain outstanding.
+
+The completed tests establish an initial validation baseline. Outstanding checks must be completed and documented before the analytical solution can be considered fully validated.
+
