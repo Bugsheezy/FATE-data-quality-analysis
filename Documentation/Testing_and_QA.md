@@ -65,17 +65,33 @@ All three checks returned zero failures in SQL Server.
 
 These results confirm referential integrity for the relationships tested and valid resolution-date ordering for non-null dates.
 
-### 6. Outstanding Quality Checks
 
-The following checks require further verification:
+### 6. Additional Data Quality Validation
 
-- Exception codes reconcile with the rule catalogue.
-- Additional date and remediation-status business rules are satisfied.
+The following tests were executed in SQL Server on 8 October 2026.
+
+| Test | Description | Failed Records | Result |
+|---|---|---:|---|
+| QA12 | Exception codes match DQ rule IDs | 0 | PASS |
+| QA13 | Invalid remediation statuses | 0 | PASS |
+| QA14 | Resolved exceptions without resolution dates | 0 | PASS |
+| QA15 | Open exceptions with resolution dates | 0 | PASS |
+| QA16 | Exception and enrolment StudentID mismatches | 0 | PASS |
+
+All five tests returned zero failures.
+
+These results confirm that the tested records satisfy the specified rule-code, remediation-status and student-reference checks.
+
+### Outstanding Quality Checks
+
+The following checks remain outstanding:
+
 - SQL metrics reconcile with Power BI measures.
 - Power BI refresh completes successfully.
 - The final reporting run has comparable coverage to earlier runs.
 
-These tests must not be marked as passed without supporting evidence.
+These checks must not be marked as passed without supporting evidence.
+
 
 ### 7. Limitations
 
