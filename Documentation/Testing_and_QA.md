@@ -70,16 +70,6 @@ These results confirm referential integrity for the relationships tested and val
 
 The following checks require further verification:
 
-- Exception records reference valid enrolments.
-- Exception codes reconcile with the rule catalogue.
-- Reporting and resolution dates satisfy business rules.
-- SQL metrics reconcile with Power BI measures.
-- Power BI refresh completes successfully.
-- The final reporting run has comparable coverage to earlier reporting runs.
-
-These tests must not be marked as passed without supporting evidence.
-
-
 - Exception codes reconcile with the rule catalogue.
 - Additional date and remediation-status business rules are satisfied.
 - SQL metrics reconcile with Power BI measures.
