@@ -175,3 +175,42 @@ UNION ALL
 
 SELECT 'DQ_Rules', COUNT(*)
 FROM dbo.DQ_Rules;
+
+
+/* =========================================================
+   6. DATA INTEGRITY VALIDATION
+   Check relationships and date consistency
+   ========================================================= */
+
+-- QA09: Exceptions without matching enrolments
+SELECT
+    'QA09 - Orphan Exceptions' AS TestName,
+    COUNT(*) AS FailedRecords
+FROM dbo.Exceptions x
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM dbo.Enrolments e
+    WHERE e.EnrolmentID = x.EnrolmentID
+)
+
+UNION ALL
+
+-- QA10: Enrolments without matching students
+SELECT
+    'QA10 - Orphan Enrolments',
+    COUNT(*)
+FROM dbo.Enrolments e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM dbo.Students s
+    WHERE s.StudentID = e.StudentID
+)
+
+UNION ALL
+
+-- QA11: Resolution dates before reporting dates
+SELECT
+    'QA11 - Invalid Resolution Dates',
+    COUNT(*)
+FROM dbo.Exceptions
+WHERE ResolvedDate < ReportDate;
