@@ -151,3 +151,27 @@ SELECT
 FROM dbo.Exceptions
 GROUP BY ReportDate
 ORDER BY ReportDate;
+
+
+/* =========================================================
+   5. DATA VALIDATION AND RECORD COUNTS
+   Verify source tables against the project baseline
+   ========================================================= */
+
+SELECT 'Students' AS TableName, COUNT(*) AS TotalRecords
+FROM dbo.Students
+
+UNION ALL
+
+SELECT 'Enrolments', COUNT(*)
+FROM dbo.Enrolments
+
+UNION ALL
+
+SELECT 'Exceptions', COUNT(*)
+FROM dbo.Exceptions
+
+UNION ALL
+
+SELECT 'DQ_Rules', COUNT(*)
+FROM dbo.DQ_Rules;
