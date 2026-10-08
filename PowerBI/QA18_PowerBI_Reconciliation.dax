@@ -1,0 +1,109 @@
+
+/*
+============================================================
+FATE — FICTIONAL ACADEMY OF TRAINING AND EDUCATION
+
+QA18: POWER BI RECONCILIATION AND INTEGRITY VALIDATION
+
+Platform: Power BI Desktop
+Language: DAX
+Validation date: 8 October 2026
+
+Purpose:
+Reproduce the checks used to validate key Power BI
+metrics and enrolment identifier integrity.
+
+Expected results:
+
+Total Enrolments:                 10075
+Affected Enrolments:              2723
+Affected Rate:                    27.03%
+Total Exception Occurrences:      3800
+Open Exceptions:                  1305
+
+Unique Enrolment IDs:             10075
+Blank Enrolment IDs:              0
+Blank Exception Enrolment IDs:    0
+
+Notes:
+- Run in Power BI DAX Query View, not SQL Server.
+- Uses existing Power BI model measures.
+- The affected rate may appear as a decimal.
+- No source data or model measures are modified.
+============================================================
+*/
+
+EVALUATE
+
+ROW(
+
+    /* Total enrolment records */
+
+    "Total Enrolments",
+        [Total Enrolments],
+
+
+    /* Unique enrolments affected by exceptions */
+
+    "Affected Enrolments",
+        [Affected Enrolments],
+
+
+    /* Percentage of enrolments affected */
+
+    "Affected Rate",
+        [Affected Rate],
+
+
+    /* Total recorded exception occurrences */
+
+    "Total Exception Occurrences",
+        [Total Exception Occurrences],
+
+
+    /* Exception occurrences with Open status */
+
+    "Open Exceptions",
+        [Open Exceptions],
+
+
+    /* Confirm the enrolment table row count */
+
+    "Total Enrolment Rows",
+        COUNTROWS(Enrolments),
+
+
+    /* Confirm enrolment identifier uniqueness */
+
+    "Unique Enrolment IDs",
+        DISTINCTCOUNT(Enrolments[EnrolmentID]),
+
+
+    /* Identify blank enrolment identifiers */
+
+    "Blank Enrolment IDs",
+        COALESCE(
+            COUNTROWS(
+                FILTER(
+                    Enrolments,
+                    ISBLANK(Enrolments[EnrolmentID])
+                )
+            ),
+            0
+        ),
+
+
+    /* Identify blank exception enrolment references */
+
+    "Blank Exception Enrolment IDs",
+        COALESCE(
+            COUNTROWS(
+                FILTER(
+                    Exceptions,
+                    ISBLANK(Exceptions[EnrolmentID])
+                )
+            ),
+            0
+        )
+
+)
