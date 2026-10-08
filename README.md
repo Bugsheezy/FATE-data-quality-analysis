@@ -204,8 +204,23 @@ Broader analysis of affected enrolments, source systems, regions and occurrence 
 | QA09–QA11 | Orphan exceptions, orphan enrolments and resolution-date ordering | Zero failed records for each check |
 | QA12 | Exception-code to rule-ID coverage | Zero failed records |
 | QA13–QA16 | Remediation status, resolution-date completeness and student-reference consistency | Zero failed records for each check |
+| QA17 | Exception-to-source reconciliation for EX01, EX02, EX05 and EX06 | 327 occurrences flagged for investigation; not a pass/fail result |
 
-**Interpretation:** Passing record-count and integrity checks establishes only the conditions tested. Successful execution of QA05–QA08 confirms the queries ran, not that every analytical interpretation is independently validated. Full Power BI metric reconciliation, refresh logging and the final reporting run's coverage are separate verification considerations.
+### QA17 — Additional investigation
+
+QA17 compared the recorded exception occurrences against **currently stored** enrolment attributes for four selected exception categories. It flagged **327 of 2,679 occurrences (12.2%)** for further review, of which **116** have an Open remediation status.
+
+| Exception | Occurrences examined | Flagged for review | Flagged and Open |
+|---|---:|---:|---:|
+| EX01 — Incomplete Contact Details | 762 | 46 | 14 |
+| EX02 — Missing LMS Unit Link | 619 | 193 | 72 |
+| EX05 — Legacy Migration Mismatch | 431 | 48 | 12 |
+| EX06 — Fee/Product Validation | 867 | 40 | 18 |
+| **Total** | **2,679** | **327** | **116** |
+
+**Interpretation:** QA17 identified discrepancies that require investigation; it did **not** establish 327 false positives or confirmed errors. The dataset lacks historical enrolment-attribute snapshots needed to distinguish valid historical exceptions from corrected records, rule-definition gaps or classification problems. The EX02 online-versus-On-Campus rule applicability requires business clarification. The investigation and follow-up actions are documented in the [QA evidence](Documentation/Testing_and_QA.md), [rule catalogue](Documentation/Data_Quality_Rules.md) and [process-improvement analysis](Documentation/Process_Improvement.md).
+
+**Validation scope:** Passing record-count and integrity checks establishes only the conditions tested. Successful execution of QA05–QA08 confirms the queries ran, not that every analytical interpretation is independently validated. Full Power BI metric reconciliation, refresh logging and the final reporting run's coverage are separate verification considerations.
 
 ---
 
@@ -556,7 +571,7 @@ FATE/
 Completed and included in this repository:
 
 - synthetic dataset and SQL Server implementation;
-- four T-SQL diagnostic investigations and recorded QA01–QA16 validation work;
+- four T-SQL diagnostic investigations, recorded QA01–QA16 checks, and the QA17 exception-to-source investigation;
 - Power Query preparation, relational data model and DAX measures;
 - two Power BI report pages and exported screenshots;
 - findings, root-cause hypotheses and proposed controls;
@@ -564,7 +579,7 @@ Completed and included in this repository:
 - [current-state and future-state process improvement analysis](Documentation/Process_Improvement.md);
 - [testing and QA documentation](Documentation/Testing_and_QA.md).
 
-**Remaining verification limitations:** Independent reconciliation of all Power BI measures against SQL, evidence of the latest Power BI refresh status, and an explanation for the smaller final reporting run have not been fully documented. The final reporting run (11 May 2026: 218 occurrences) is materially smaller than earlier runs; it must not be interpreted as confirmed improvement without assessing reporting coverage.
+**Remaining verification limitations:** Independent reconciliation of all Power BI measures against SQL, evidence of the latest Power BI refresh status, and an explanation for the smaller final reporting run have not been fully documented. The final reporting run (11 May 2026: 218 occurrences) is materially smaller than earlier runs; it must not be interpreted as confirmed improvement without assessing reporting coverage. The QA17 flags also remain investigation items rather than confirmed data errors because historical attribute snapshots and validated rule applicability are not available.
 
 Potential later extension:
 
