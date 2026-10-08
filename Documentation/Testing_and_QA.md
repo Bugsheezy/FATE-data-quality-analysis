@@ -76,6 +76,7 @@ The following checks require further verification:
 - Power BI refresh completes successfully.
 - The final reporting run has comparable coverage to earlier runs.
 
+These tests must not be marked as passed without supporting evidence.
 
 ### 7. Limitations
 
