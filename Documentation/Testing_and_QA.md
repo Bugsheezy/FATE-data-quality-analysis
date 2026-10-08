@@ -52,6 +52,20 @@ The SQL output also supports these arithmetic checks:
 
 These figures were reconciled against the displayed SQL results.
 
+
+### Additional Integrity Validation — 8 October 2026
+
+| Test | Description | Failed Records | Result |
+|---|---|---:|---|
+| QA09 | Exceptions without matching enrolments | 0 | PASS |
+| QA10 | Enrolments without matching students | 0 | PASS |
+| QA11 | Resolution dates before reporting dates | 0 | PASS |
+
+All three checks returned zero failures in SQL Server.
+
+These results confirm referential integrity for the relationships tested and valid resolution-date ordering for non-null dates.
+
+
 ### 6. Outstanding Quality Checks
 
 The following checks require further verification:
@@ -65,6 +79,14 @@ The following checks require further verification:
 
 These tests must not be marked as passed without supporting evidence.
 
+
+- Exception codes reconcile with the rule catalogue.
+- Additional date and remediation-status business rules are satisfied.
+- SQL metrics reconcile with Power BI measures.
+- Power BI refresh completes successfully.
+- The final reporting run has comparable coverage to earlier runs.
+
+
 ### 7. Limitations
 
 The dataset is synthetic and its results do not represent actual organisational performance.
@@ -75,6 +97,6 @@ Identified associations do not independently prove root causes. Proposed control
 
 The initial SQL record-count validation passed, and the four published analytical investigations executed successfully.
 
-Additional referential-integrity, business-rule and reporting reconciliation checks remain outstanding.
+Referential-integrity and resolution-date ordering tests passed. Additional business-rule, Power BI reconciliation and reporting-coverage checks remain outstanding.
 
 This document distinguishes completed tests from further validation requirements.
