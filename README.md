@@ -58,6 +58,21 @@ The analysis addressed six core questions:
 
 ---
 
+## Reproducing This Project
+
+The repository includes the synthetic datasets, SQL analysis,
+Power BI report and supporting documentation.
+
+For instructions on recreating the database, importing the data,
+running the investigations and reconnecting Power BI, see:
+
+**[Reproduction and Setup Guide](REPRODUCE.md)**
+
+The setup procedure has been documented but has not yet
+been independently tested on a fresh SQL Server installation.
+
+---
+
 ## Dataset
 
 The synthetic project dataset contains:
