@@ -188,7 +188,39 @@ The DAX measures were reviewed and found consistent with their intended calculat
 
 These results establish reconciliation for the metrics and integrity checks tested. They do not independently verify every visual, data transformation or refresh operation.
 
-### 10. Outstanding Quality Checks
+### 10. Power BI Refresh Verification (QA19)
+
+**Validation date:** 8 October 2026
+
+**Environment:** Power BI Desktop — local QA backup copy
+
+**Objective:** Verify that the existing Power BI report can refresh without reported errors and that its key analytical results remain consistent.
+
+#### Refresh Validation
+
+A refresh was initiated in Power BI Desktop.
+
+The user reported that the refresh completed without errors. The refreshed Data Quality Overview page was visually inspected.
+
+| Metric | Expected | Actual | Result |
+|---|---:|---:|---|
+| Total Enrolments | 10,075 | 10,075 | PASS |
+| Affected Enrolments | 2,723 | 2,723 | PASS |
+| Affected Rate | 27.03% | 27.03% | PASS |
+| Total Exception Occurrences | 3,800 | 3,800 | PASS |
+| Open Exceptions | 1,305 | 1,305 | PASS |
+
+All four overview charts remained populated after the refresh.
+
+#### Result: PASS
+
+The refresh was reported as successful, and the five inspected KPI values remained consistent with the documented baseline.
+
+No missing visuals or unexpected changes were identified during the post-refresh review.
+
+This test establishes refresh stability for the inspected local Power BI report. It does not constitute verification of scheduled refresh in the Power BI Service.
+
+### 11. Outstanding Quality Checks
 
 The following checks remain outstanding:
 
@@ -197,13 +229,13 @@ The following checks remain outstanding:
 
 These checks must not be marked as passed without supporting evidence.
 
-### 11. Limitations
+### 12. Limitations
 
 The dataset is synthetic and its results do not represent actual organisational performance.
 
 Identified associations do not independently prove root causes. Proposed controls and improvements require testing before effectiveness can be claimed.
 
-### 12. Conclusion
+### 13. Conclusion
 
 
 The initial database record-count validation passed, and the four documented SQL investigations executed successfully.
