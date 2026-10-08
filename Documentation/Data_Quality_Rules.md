@@ -158,16 +158,55 @@ Duplicate enrolments may:
 - increase remediation workload;
 - reduce confidence in reporting.
 
-### Analytical finding
 
-Duplicate risk was concentrated at specific campuses.
+### Analytical Finding
 
-Highest duplicate-affected rates:
+Missing LMS Unit Link recorded:
 
-- Harbour City: **6.56%**
-- Metro South: **5.25%**
+- 619 exception occurrences.
+- 381 affected enrolments.
+- 1.62 occurrences per affected enrolment.
 
-Other campuses were materially lower.
+This represents occurrence frequency, not a verified
+post-remediation recurrence rate.
+
+### QA17 — Exception-to-Source Reconciliation
+
+Further investigation identified:
+
+| Measure | Result |
+|---|---:|
+| Exception occurrences flagged for review | 193 |
+| Distinct enrolments flagged for review | 134 |
+| Open occurrences flagged for review | 72 |
+
+These occurrences were flagged because the currently
+recorded enrolment attributes did not align with the
+narrow online-enrolment rule used for QA17.
+
+Possible explanations include:
+
+- Historical LMS statuses differing from current values.
+- On Campus enrolments legitimately requiring LMS access.
+- Exceptions remaining open after source-record changes.
+- Incomplete or incorrectly applied business rules.
+
+The available data cannot establish which explanation
+applies to each occurrence.
+
+### Assessment
+
+INVESTIGATION REQUIRED
+
+The 193 flagged occurrences are not confirmed data errors
+or false positives.
+
+The business owner should clarify which delivery modes
+require LMS linkage.
+
+Historical attribute tracking and reconciliation of open
+exceptions against current source records are recommended.
+
 
 ### Recommended control
 
